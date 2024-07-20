@@ -13,3 +13,4 @@ These are the things I want to accomplish
 * :heavy_check_mark: Calculate start and end balance for each month
 * Calculate what happends if I make various payments during the lifetime of the mortgage
 * Calculate what happens if I add monthly principal payments
+* Add unit testing
