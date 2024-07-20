@@ -1,15 +1,15 @@
 ﻿using MortgageCalculator.Library.Models;
 
-namespace MortgageCalculator.Library;
+namespace MortgageCalculator.Library.Services;
 
-public static class Calculations
+public static class Calculation
 {
-     public static decimal MaxRepayPerYear(this decimal principal, double maxRepayPerYear, bool isDisplayValue)
+    public static decimal MaxRepayPerYear(this decimal principal, double maxRepayPerYear, bool isDisplayValue)
     {
 
         decimal output = 0;
 
-        output = principal * (decimal)maxRepayPerYear;
+        output = principal / (decimal)maxRepayPerYear;
         if (isDisplayValue)
         {
             output = Math.Round(output, 2);
@@ -51,7 +51,7 @@ public static class Calculations
         double montlyInterestRate = interest.MonthlyInterestRate();
         decimal mortgageMagic = (decimal)(1 - Math.Pow(1 + montlyInterestRate, -duration));
 
-        output = principal * ((decimal)montlyInterestRate) / mortgageMagic;
+        output = principal * (decimal)montlyInterestRate / mortgageMagic;
         if (isDisplayValue)
         {
             output = Math.Round(output, 2);
@@ -62,7 +62,7 @@ public static class Calculations
     {
         decimal output = 0;
 
-        output = principal * (decimal)MonthlyInterestRate(interest);
+        output = principal * (decimal)interest.MonthlyInterestRate();
 
         return output;
     }
@@ -108,9 +108,5 @@ public static class Calculations
     public static double MonthlyInterestRate(this double interest)
     {
         return interest / 100 / 12;
-    }
-    public static int CalculateTotalMonths(this int years)
-    {
-        return years * 12;
     }
 }

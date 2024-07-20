@@ -1,6 +1,6 @@
 ﻿using MortgageCalculator;
-using MortgageCalculator.Library;
 using MortgageCalculator.Library.Models;
+using MortgageCalculator.Library.Services;
 using MortgageCalculator.Services;
 using static MortgageCalculator.Enums.OutputTypes;
 
@@ -8,15 +8,15 @@ using static MortgageCalculator.Enums.OutputTypes;
 TextMessages.WelcomeScreen();
 QuestionnaireModel answers = TextMessages.Questionnaire();
 
-decimal monthlyPayment = Calculations.MonthlyPayment(answers.Principal, answers.Interest, answers.Duration, true);
-decimal totalPayment = Calculations.TotalPayment(monthlyPayment, answers.Duration, true);
+decimal monthlyPayment = Calculation.MonthlyPayment(answers.Principal, answers.Interest, answers.Duration, true);
+decimal totalPayment = Calculation.TotalPayment(monthlyPayment, answers.Duration, true);
 Console.WriteLine();
 Console.WriteLine($"Principal: { answers.Principal }");
 Console.WriteLine($"Monthly Payment: { monthlyPayment }");
 Console.WriteLine($"Total Payment: { totalPayment }");
-Console.WriteLine($"Total Interest: { Calculations.TotalInterest(totalPayment, answers.Principal, true) }");
+Console.WriteLine($"Total Interest: { Calculation.TotalInterest(totalPayment, answers.Principal, true) }");
 
-List<MortgagePaymentModel> results = Calculations.MortgageCalculations(answers);
+List<MortgagePaymentModel> results = Calculation.MortgageCalculations(answers);
 OutputServices.WriteResults(Output.Console, results);
 //WriteResults(Output.TextFile, results);
 //WriteResults(Output.CsvFile, results);

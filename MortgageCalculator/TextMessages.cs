@@ -1,5 +1,5 @@
 ﻿using MortgageCalculator.Library.Models;
-using MortgageCalculator.Library;
+using MortgageCalculator.Library.Helpers;
 
 namespace MortgageCalculator;
 
@@ -17,7 +17,7 @@ public class TextMessages
         Console.WriteLine("How long should the mortgage be? (years 5/10/15/30)");
         string durationText = Console.ReadLine();
         int.TryParse(durationText, out int durationNumber);
-        int duration = Calculations.CalculateTotalMonths(durationNumber);
+        int duration = Helper.CalculateTotalMonths(durationNumber);
 
         Console.WriteLine("What is the interestrate? (percentage 1 / 4.1)");
         string interestText = Console.ReadLine();
