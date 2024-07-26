@@ -4,29 +4,15 @@ namespace MortgageCalculator.Library.Services;
 
 public static class Calculation
 {
-    public static decimal MaxRepayPerYear(this decimal principal, double maxRepayPerYear, bool isDisplayValue)
+    public static decimal MaxRepayPerYear(this decimal principal, decimal maxRepayPerYear)
     {
-
-        decimal output = 0;
-
-        output = principal / (decimal)maxRepayPerYear;
-        if (isDisplayValue)
-        {
-            output = Math.Round(output, 2);
-        }
-
-        return output;
+        return principal / maxRepayPerYear;
     }
-    public static decimal TotalPayment(decimal monthlyPayment, int duration, bool isDisplayValue)
+    public static decimal TotalPayment(decimal monthlyPayment, int duration)
     {
         decimal output = 0;
 
         output = monthlyPayment * duration;
-
-        if (isDisplayValue)
-        {
-            output = Math.Round(output, 2);
-        }
 
         return output;
     }
@@ -72,8 +58,8 @@ public static class Calculation
         List<MortgagePaymentModel> output = new();
 
         decimal monthlyPayment = MonthlyPayment(answer.Principal, answer.Interest, answer.Duration, false);
-        decimal totalPayment = TotalPayment(monthlyPayment, answer.Duration, false);
-        decimal displayTotalPayment = TotalPayment(monthlyPayment, answer.Duration, true);
+        decimal totalPayment = TotalPayment(monthlyPayment, answer.Duration);
+        decimal displayTotalPayment = TotalPayment(monthlyPayment, answer.Duration);
         decimal displayMonthlyPayment = MonthlyPayment(answer.Principal, answer.Interest, answer.Duration, true);
         decimal displayTotalInterest = TotalInterest(totalPayment, answer.Principal, true);
         int calculateMonth = 0;

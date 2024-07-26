@@ -9,7 +9,7 @@ TextMessages.WelcomeScreen();
 QuestionnaireModel answers = TextMessages.Questionnaire();
 
 decimal monthlyPayment = Calculation.MonthlyPayment(answers.Principal, answers.Interest, answers.Duration, true);
-decimal totalPayment = Calculation.TotalPayment(monthlyPayment, answers.Duration, true);
+decimal totalPayment = Calculation.TotalPayment(monthlyPayment, answers.Duration);
 Console.WriteLine();
 Console.WriteLine($"Principal: { answers.Principal }");
 Console.WriteLine($"Monthly Payment: { monthlyPayment }");

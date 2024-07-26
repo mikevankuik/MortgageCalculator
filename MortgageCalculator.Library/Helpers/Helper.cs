@@ -6,4 +6,8 @@ public static class Helper
     {
         return years * 12;
     }
+    public static decimal FormatDisplayValue(this decimal value)
+    {
+        return Math.Round(value, 2);
+    }
 }

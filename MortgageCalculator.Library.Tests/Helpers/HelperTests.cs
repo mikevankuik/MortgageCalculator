@@ -15,4 +15,14 @@ public class HelperTests
         //Assert
         Assert.Equal(expected, actual);
     }
+
+    [Theory]
+    [InlineData(1.551, 1.55)]
+    [InlineData(1.555, 1.56)]
+    [InlineData(1.556, 1.56)]
+    public void FormatDisplayValue_IsValid(decimal value, decimal expected)
+    {
+        decimal actual = Helper.FormatDisplayValue(value);
+        Assert.Equal(expected, actual);
+    }
 }
